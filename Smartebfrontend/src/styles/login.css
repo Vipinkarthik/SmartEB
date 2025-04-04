@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #808080;
+    text-align: center;
+}
+
+.header-title {
+    font-size: 32px; 
+    font-weight: bold;
+    margin-top: 20px; 
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 65VH;
+}
+
+.section-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #696969;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.login-container {
+    background-color: #a9a9a9;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    height: 370px;
+    margin-top: 100px; 
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-button {
+    background-color: #060606;
+    color: white;
+}
+
+.submit-button {
+    background-color: #ff2222;
+    color: white;
+}
+
+.signup-label {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Corrected Password Row Layout */
+.password-row {
+    display: flex;
+    justify-content: space-between; /* Align items in a row */
+    align-items: center; /* Vertically align the elements */
+    width: 100%; /* Full width for the container */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+/* Password input field styling */
+.password-row input {
+    width: 45%; /* Make inputs take up 45% of the container width */
+    margin-right: 10px; /* Add space between the password fields */
+}
+
+/* Save button styling */
+.password-row .save-button {
+    width: 100%; /* Full width for the button */
+    margin-top: 10px; /* Space between inputs and save button */
+}

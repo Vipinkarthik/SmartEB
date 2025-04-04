@@ -1,0 +1,129 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: gray;
+    padding: 0;
+    margin: 0;
+}
+
+/* Top Navigation - Fixed at the Top */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    z-index: 1000;
+}
+
+/* Home Button */
+.home-button {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* User Info Section */
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* Logout Button */
+.logout-button {
+    background-color: lightgray;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-left: 15px;
+    margin-right: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #d3d3d3;
+}
+
+/* Main Content - Push Below Navbar */
+.content-area {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+    align-items: center;
+    padding: 20px;  
+    margin-top: 5px; /* Offset for fixed navbar */
+}
+
+/* Feature Cards */
+.feature-card {
+    background-color: #c0c0c0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+.feature-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.feature-title {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Bottom Navigation - Fixed at the Bottom */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #a9a9a9;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 45px;
+    z-index: 1000;
+}
+
+.bottom-nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+.bottom-nav a:hover {
+    text-decoration: underline;
+}
