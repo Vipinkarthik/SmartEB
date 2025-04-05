@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/dashboard.css';
 import manImage from '../assets/man.png';
 import quickPayImage from '../assets/Cash-Drawing.png';
 import eReceiptImage from '../assets/MONEY.png';
+import '../styles/navbar.css';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -40,12 +41,12 @@ function Dashboard() {
 
       {/* Bottom Navigation */}
       <div className="bottom-nav">
-        <a onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</a>
-        <a onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>About</a>  {/* Navigates to About page */}
-        <a onClick={() => navigate('/scanread')} style={{ cursor: 'pointer' }}>Scan Reading</a>
-        <a onClick={() => navigate('/quickpage')} style={{ cursor: 'pointer' }}>Quick Pay</a>
-        <a onClick={() => navigate('/ereciept')} style={{ cursor: 'pointer' }}>E-Receipt</a>
-        <a onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>Profile</a>
+        <Link to="/dashboard" style={{ cursor: 'pointer' }}>Home</Link>
+        <Link to="/about" style={{ cursor: 'pointer' }}>About</Link>
+        <Link to="/scanread" style={{ cursor: 'pointer' }}>Scan Reading</Link>
+        <Link to="/quickpage" style={{ cursor: 'pointer' }}>Quick Pay</Link>
+        <Link to="/ereciept" style={{ cursor: 'pointer' }}>E-Receipt</Link>
+        <Link to="/profile" style={{ cursor: 'pointer' }}>Profile</Link>
       </div>
     </div>
   );

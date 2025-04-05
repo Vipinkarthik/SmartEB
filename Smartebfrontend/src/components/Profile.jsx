@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importing the useNavigate hook
 import '../styles/Profile.css';
+import '../styles/navbar.css';
 
 // Assuming you're fetching user data from an API or context
 function Profile() {

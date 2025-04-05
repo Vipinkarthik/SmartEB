@@ -2,12 +2,16 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { jsPDF } from 'jspdf'; 
 import '../styles/ereciept.css';
+import '../styles/navbar.css';
+import manImage from '../assets/man.png'; // make sure this image path is correct
 
 function EReceipt() {
   const navigate = useNavigate(); 
+
   const handleLogout = () => {
     navigate('/login'); 
   };
+
   const handleDownload = (consumerNo, consumerName, billAmount, billPaidDate) => {
     const doc = new jsPDF();
     doc.setFontSize(12);
@@ -18,19 +22,21 @@ function EReceipt() {
     doc.text(`Bill Paid Date: ${billPaidDate}`, 20, 60);
     doc.save(`e-receipt-${consumerNo}.pdf`);
   };
+
   return (
     <div className="ereceipt-container">
-      <div className="section-header">
-      </div>
+      {/* Top Navigation */}
       <div className="top-nav">
-        <div className="ereceipt-title">
-          <span role="img" aria-label="phone">📱</span> E-Receipt
+        <div className="home-button">
+          <span role="img" aria-label="receipt">🧾</span> E-Receipt
         </div>
         <div className="user-info">
-          <span role="img" aria-label="user">👤</span>
-          <button className="logout-button" onClick={handleLogout}>Logout-&gt;</button>
+          <img src={manImage} alt="User" className="user-icon" />
+          Profile
+          <button className="logout-button" onClick={handleLogout}>Logout →</button>
         </div>
       </div>
+
       <div className="form-area">
         <div className="input-row">
           <label htmlFor="consumerNo">Consumer No :</label>
@@ -81,11 +87,14 @@ function EReceipt() {
           </table>
         </div>
       </div>
+
+      {/* Footer */}
       <div className="footer">
-        <p>&copy; 2025 QuickPay Inc. All rights reserved.</p>
+        <p>&copy; 2025 E-Receipt Inc. All rights reserved.</p>
         <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
       </div>
     </div>
   );
 }
+
 export default EReceipt;
