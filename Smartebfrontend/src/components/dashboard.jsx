@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/dashboard.css';
+import '../styles/navbar.css';
 import manImage from '../assets/man.png';
 import quickPayImage from '../assets/Cash-Drawing.png';
 import eReceiptImage from '../assets/MONEY.png';
-import '../styles/navbar.css';
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('userName');
+    if (!name) {
+      navigate('/login');
+    } else {
+      setUserName(name);
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    navigate('/login');
+  };
 
   return (
     <div className="dashboard-container">
@@ -17,9 +33,8 @@ function Dashboard() {
           <span role="img" aria-label="home">🏠</span> Home
         </div>
         <div className="user-info">
-          <img src={manImage} alt="User" className="user-icon" />
-          Welcome
-          <button className="logout-button" onClick={() => navigate('/login')}>Logout →</button>
+          <span className="welcome-text">Hi {userName}, Welcome!</span>
+          <button className="logout-button" onClick={handleLogout}>Logout →</button>
         </div>
       </div>
 
@@ -41,12 +56,12 @@ function Dashboard() {
 
       {/* Bottom Navigation */}
       <div className="bottom-nav">
-        <Link to="/dashboard" style={{ cursor: 'pointer' }}>Home</Link>
-        <Link to="/about" style={{ cursor: 'pointer' }}>About</Link>
-        <Link to="/scanread" style={{ cursor: 'pointer' }}>Scan Reading</Link>
-        <Link to="/quickpage" style={{ cursor: 'pointer' }}>Quick Pay</Link>
-        <Link to="/ereciept" style={{ cursor: 'pointer' }}>E-Receipt</Link>
-        <Link to="/profile" style={{ cursor: 'pointer' }}>Profile</Link>
+        <Link to="/dashboard">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/scanread">Scan Reading</Link>
+        <Link to="/quickpage">Quick Pay</Link>
+        <Link to="/ereciept">E-Receipt</Link>
+        <Link to="/profile">Profile</Link>
       </div>
     </div>
   );

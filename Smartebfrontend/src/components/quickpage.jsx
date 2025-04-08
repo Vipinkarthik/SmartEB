@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/quickpage.css';
 import '../styles/navbar.css';
-import manImage from '../assets/man.png';
 
 function QuickPay() {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const storedName = localStorage.getItem('userName');
+    if (storedName) {
+      setUserName(storedName);
+    }
+  }, []);
 
   const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
     navigate('/');
   };
 
@@ -19,8 +28,7 @@ function QuickPay() {
           <span role="img" aria-label="quick">⚡</span> Quick Pay
         </div>
         <div className="user-info">
-          <img src={manImage} alt="User" className="user-icon" />
-          Profile
+          Hi {userName}, Welcome!
           <button className="logout-button" onClick={handleLogout}>Logout →</button>
         </div>
       </div>

@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tesseract from 'tesseract.js';
 import '../styles/scanread.css';
 import '../styles/navbar.css';
-import manImage from '../assets/man.png'; // make sure this path is correct
 
 function ScanReadings() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -14,15 +13,30 @@ function ScanReadings() {
   const [currentReading, setCurrentReading] = useState('');
   const [amount, setAmount] = useState('');
   const [tariff, setTariff] = useState(0);
+  const [userName, setUserName] = useState('');
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedName = localStorage.getItem('userName');
+    if (storedName) {
+      setUserName(storedName);
+    }
+  }, []);
+
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      videoRef.current.srcObject = stream;
-      setIsCameraOpen(true);
+
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          setIsCameraOpen(true);
+        } else {
+          console.error("Video element not found");
+        }
+      }, 100);
     } catch (err) {
       console.error("Error accessing camera: ", err);
     }
@@ -72,19 +86,19 @@ function ScanReadings() {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
     navigate('/login');
   };
 
   return (
     <div className="scan-readings-page">
-      {/* ✅ Updated Top Navigation Bar */}
       <div className="top-nav">
         <div className="home-button">
           <span role="img" aria-label="scan">📷</span> Scan Readings
         </div>
         <div className="user-info">
-          <img src={manImage} alt="User" className="user-icon" />
-          Profile
+          Hi {userName}, Welcome!
           <button className="logout-button" onClick={handleLogout}>Logout →</button>
         </div>
       </div>
@@ -115,14 +129,18 @@ function ScanReadings() {
             <span className="camera-icon">📸</span>
           </div>
 
-          {isCameraOpen && (
-            <div className="camera-container">
-              <video ref={videoRef} width="100%" autoPlay />
-              <button className="capture-button" onClick={captureImage}>Capture</button>
-              <button className="stop-button" onClick={stopCamera}>Stop Camera</button>
-              <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
-            </div>
-          )}
+          <div className="camera-container" style={{ display: isCameraOpen ? 'block' : 'none' }}>
+            <video
+              ref={videoRef}
+              width="100%"
+              autoPlay
+              muted
+              playsInline
+            />
+            <button className="capture-button" onClick={captureImage}>Take Photo</button>
+            <button className="stop-button" onClick={stopCamera}>Stop Camera</button>
+            <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
+          </div>
 
           <div className="input-row">
             <label>Current Reading :</label>
@@ -134,7 +152,6 @@ function ScanReadings() {
           <button className="submit-button">Submit</button>
         </div>
 
-        {/* Footer */}
         <div className="footer">
           <p>&copy; 2025 ScanReadings Inc. All rights reserved.</p>
           <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
