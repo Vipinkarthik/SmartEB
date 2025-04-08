@@ -9,25 +9,6 @@
     padding-bottom: 500px;
 }
 
-/* Top Navigation Bar */
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(224, 224, 224);
-    padding: 15px 25px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* User information section */
-.user-info {
-    display: flex;
-    align-items: center;
-}
-
 /* Logout button */
 .logout-button {
     background-color: rgb(211, 211, 211);

@@ -1,28 +1,39 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/quickpage.css';
+import '../styles/navbar.css';
 
 function QuickPay() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const storedName = localStorage.getItem('userName');
+    if (storedName) {
+      setUserName(storedName);
+    }
+  }, []);
 
   const handleLogout = () => {
-    // Navigate to login page when logout is clicked
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
     navigate('/');
   };
 
   return (
     <div className="quickpay-container">
-      <div className="section-header">
-      </div>
+      {/* Top Navigation */}
       <div className="top-nav">
-        <div className="quickpay-title">
-          <span role="img" aria-label="check">✅</span> Quick Pay
+        <div className="home-button">
+          <span role="img" aria-label="quick">⚡</span> Quick Pay
         </div>
         <div className="user-info">
-          <span role="img" aria-label="user">👤</span> 
-          <button className="logout-button" onClick={handleLogout}>Logout-&gt;</button>
+          Hi {userName}, Welcome!
+          <button className="logout-button" onClick={handleLogout}>Logout →</button>
         </div>
       </div>
+
+      {/* Main Form Area */}
       <div className="form-area">
         <div className="input-row">
           <label htmlFor="consumerNo">Consumer No :</label>

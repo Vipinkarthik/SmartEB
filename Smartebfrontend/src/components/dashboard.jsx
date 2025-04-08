@@ -1,12 +1,29 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/dashboard.css';
+import '../styles/navbar.css';
 import manImage from '../assets/man.png';
 import quickPayImage from '../assets/Cash-Drawing.png';
 import eReceiptImage from '../assets/MONEY.png';
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('userName');
+    if (!name) {
+      navigate('/login');
+    } else {
+      setUserName(name);
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    navigate('/login');
+  };
 
   return (
     <div className="dashboard-container">
@@ -16,9 +33,8 @@ function Dashboard() {
           <span role="img" aria-label="home">🏠</span> Home
         </div>
         <div className="user-info">
-          <img src={manImage} alt="User" className="user-icon" />
-          Welcome
-          <button className="logout-button" onClick={() => navigate('/login')}>Logout →</button>
+          <span className="welcome-text">Hi {userName}, Welcome!</span>
+          <button className="logout-button" onClick={handleLogout}>Logout →</button>
         </div>
       </div>
 
@@ -40,12 +56,12 @@ function Dashboard() {
 
       {/* Bottom Navigation */}
       <div className="bottom-nav">
-        <a onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</a>
-        <a onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>About</a>  {/* Navigates to About page */}
-        <a onClick={() => navigate('/scanread')} style={{ cursor: 'pointer' }}>Scan Reading</a>
-        <a onClick={() => navigate('/quickpage')} style={{ cursor: 'pointer' }}>Quick Pay</a>
-        <a onClick={() => navigate('/ereciept')} style={{ cursor: 'pointer' }}>E-Receipt</a>
-        <a onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>Profile</a>
+        <Link to="/dashboard">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/scanread">Scan Reading</Link>
+        <Link to="/quickpage">Quick Pay</Link>
+        <Link to="/ereciept">E-Receipt</Link>
+        <Link to="/profile">Profile</Link>
       </div>
     </div>
   );

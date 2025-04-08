@@ -7,74 +7,59 @@
     background: linear-gradient(to bottom, #c2d2be, #8ca396);
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
-/* Top Navigation */
+/* Top Navigation Bar */
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3b4f3f;
-    padding: 10px 20px;
-    width: 100%;
+    background-color: #e0e0e0;
+    padding: 15px 30px;
     position: fixed;
     top: 0;
     left: 0;
-    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
     z-index: 1000;
+    font-weight: bold;
+    font-size: 18px;
+    box-sizing: border-box;
 }
 
-/* Home Button */
 .home-button {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #546d5b;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
 }
 
-.home-button img {
-    width: 25px;
-    height: 25px;
-    margin-right: 8px;
+.home-button:hover,
+.user-info:hover {
+    text-decoration: underline;
 }
 
-/* User Info */
 .user-info {
     display: flex;
     align-items: center;
+    gap: 12px;
     font-size: 16px;
-    background-color: #d3d3d3;
-    padding: 8px 12px;
-    border-radius: 15px;
-    color: black;
+    font-weight: bold;
 }
 
-.user-icon {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-/* Logout Button */
 .logout-button {
-    background-color: transparent;
-    border: 2px solid black;
-    padding: 8px 15px;
-    border-radius: 10px;
-    margin-left: 15px;
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s, border 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
-    background-color: #d3d3d3;
+    background-color: #e60000;
 }
 
 /* Main Content */
@@ -83,12 +68,11 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    padding: 100px 20px;
+    padding: 100px 20px 60px; /* extra bottom padding to avoid overlap */
     margin-top: 60px; /* Adjusted for fixed navbar */
-    height: calc(100vh - 110px); /* Adjusted for navbar and bottom nav */
-    width: 100%;
     flex-wrap: wrap;
     gap: 30px;
+    box-sizing: border-box;
 }
 
 /* Feature Cards */
@@ -112,14 +96,14 @@
 }
 
 .feature-image {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    background: white;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    padding: 10px;
+    object-fit:fill;
     margin-bottom: 15px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .feature-title {
     font-size: 20px;
@@ -130,23 +114,23 @@
 /* Bottom Navigation */
 .bottom-nav {
     display: flex;
-    justify-content: space-around;
-    background: linear-gradient(to bottom, #3b4f3f, #2c3b2e);
-    padding: 15px;
-    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px;
+    background-color: #d8d8d8;
+    border-top: 1px solid #aaa;
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 50px;
-    z-index: 1000;
+    width: 100%;
+    font-weight: bold;
+    z-index: 999;
+    box-sizing: border-box;
 }
 
 .bottom-nav a {
-    color: white;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 15px;
+    color: #000;
 }
 
 .bottom-nav a:hover {
